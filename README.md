@@ -1,4 +1,4 @@
-# Laravel 8 Inertia 支架
+# Laravel 10 Inertia 支架
 
 構建 Inertia 應用程式類似於建構典型的 Vue 應用程式。但是，您將使用 Laravel 的路由器而不是 Vue 路由器。Inertia 是一個小型函式庫，通過提供元件名稱和應合併到該元件「props」中的數據，您可以從 Laravel 後端呈現單一檔案 Vue 元件。
 
@@ -20,9 +20,13 @@ $ php artisan key:generate
 ```sh
 $ php artisan migrate
 ```
-- 執行安裝 Laravel Mix 引用的依賴項目，並執行所有 Mix 任務。
+- 執行安裝 Vite 和 Laravel 擴充套件引用的依賴項目。
 ```sh
-$ npm install && npm run dev
+$ npm install
+```
+- 執行正式環境版本化資源管道並編譯。
+```sh
+$ npm run build
 ```
 - 在瀏覽器中輸入已定義的路由 URL 來訪問，例如：http://127.0.0.1:8000。
 - 你可以經由 `/register` 來進行註冊。
@@ -31,11 +35,11 @@ $ npm install && npm run dev
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/wWQIXcA.png)
+![](https://i.imgur.com/5KfFLPG.png)
 > 建立新的帳號
 
-![](https://i.imgur.com/iyt759Y.png)
+![](https://i.imgur.com/IAHP8CN.png)
 > 使用現有的帳號登入後，進入預設歡迎頁面
 
-![](https://i.imgur.com/QN8DrWy.png)
+![](https://i.imgur.com/uxMYpQK.png)
 > 管理使用者的個人資料和聯絡資訊

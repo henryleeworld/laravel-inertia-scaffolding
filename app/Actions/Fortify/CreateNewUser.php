@@ -8,22 +8,24 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Laravel\Fortify\Rules\Password;
+use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
 {
+    use PasswordValidationRules;
+
     /**
      * Create a newly registered user.
      *
-     * @param  array  $input
-     * @return \App\Models\User
+     * @param  array<string, string>  $input
      */
-    public function create(array $input)
+    public function create(array $input): User
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', new Password, 'confirmed'],
+            'password' => $this->passwordRules(),
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
         return DB::transaction(function () use ($input) {
@@ -39,11 +41,8 @@ class CreateNewUser implements CreatesNewUsers
 
     /**
      * Create a personal team for the user.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
      */
-    protected function createTeam(User $user)
+    protected function createTeam(User $user): void
     {
         $user->ownedTeams()->save(Team::forceCreate([
             'user_id' => $user->id,
