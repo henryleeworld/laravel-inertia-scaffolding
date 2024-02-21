@@ -53,7 +53,7 @@ const closeModal = () => {
         </template>
 
         <template #content>
-            <div class="max-w-xl text-sm text-gray-600 dark:text-gray-400">
+            <div class="max-w-xl text-sm text-gray-600">
                 {{ $t('If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.') }}
             </div>
 
@@ -70,8 +70,8 @@ const closeModal = () => {
                         </svg>
                     </div>
 
-                    <div class="ml-3">
-                        <div class="text-sm text-gray-600 dark:text-gray-400">
+                    <div class="ms-3">
+                        <div class="text-sm text-gray-600">
                             {{ session.agent.platform ? session.agent.platform : $t('Unknown') }} - {{ session.agent.browser ? session.agent.browser : $t('Unknown') }}
                         </div>
 
@@ -80,7 +80,7 @@ const closeModal = () => {
                                 {{ session.ip_address }},
 
                                 <span v-if="session.is_current_device" class="text-green-500 font-semibold">{{ $t('This device') }}</span>
-                                <span v-else>Last active {{ session.last_active }}</span>
+                                <span v-else>{{ $t('Last active') }} {{ session.last_active }}</span>
                             </div>
                         </div>
                     </div>
@@ -89,10 +89,10 @@ const closeModal = () => {
 
             <div class="flex items-center mt-5">
                 <PrimaryButton @click="confirmLogout">
-                   {{ $t('Log Out Other Browser Sessions') }}
+                    {{ $t('Log Out Other Browser Sessions') }}
                 </PrimaryButton>
 
-                <ActionMessage :on="form.recentlySuccessful" class="ml-3">
+                <ActionMessage :on="form.recentlySuccessful" class="ms-3">
                     {{ $t('Done.') }}
                 </ActionMessage>
             </div>
@@ -112,7 +112,7 @@ const closeModal = () => {
                             v-model="form.password"
                             type="password"
                             class="mt-1 block w-3/4"
-                            placeholder="Password"
+                            :placeholder="$t('Password')"
                             autocomplete="current-password"
                             @keyup.enter="logoutOtherBrowserSessions"
                         />
@@ -127,7 +127,7 @@ const closeModal = () => {
                     </SecondaryButton>
 
                     <PrimaryButton
-                        class="ml-3"
+                        class="ms-3"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                         @click="logoutOtherBrowserSessions"
