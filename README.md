@@ -1,4 +1,4 @@
-# Laravel 11 Inertia 支架
+# Laravel 12 Inertia 支架
 
 構建 Inertia 應用程式類似於建構典型的 Vue 應用程式。但是，您將使用 Laravel 的路由器而不是 Vue 路由器。Inertia 是一個小型函式庫，通過提供元件名稱和應合併到該元件「props」中的數據，您可以從 Laravel 後端呈現單一檔案 Vue 元件。
 
@@ -35,11 +35,11 @@ $ npm run build
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/7dkoVVQ.png)
+![](https://i.imgur.com/0iVzKcp.png)
 > 建立新的帳號
 
-![](https://i.imgur.com/hSewTRl.png)
+![](https://i.imgur.com/RDECe6S.png)
 > 使用現有的帳號登入後，進入預設歡迎頁面
 
-![](https://i.imgur.com/NFrdSN1.png)
+![](https://i.imgur.com/HVayvSw.png)
 > 管理使用者的個人資料和聯絡資訊
